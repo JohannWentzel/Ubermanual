@@ -11,66 +11,84 @@ public class WhosOnFirst {
 		String buttonLabel = ""; 
 		String display = "";
 
+
 		while (stage <= 5)
 		{
-			System.out.println("Which word is showing on the display?");
-			System.out.println("(If there is no word on the display, just hit ENTER.)");
-			System.out.print("-- Word: ");
-			display = userInput.next().toLowerCase();
-
-			if (display.equals("quit"))
+			// make sure we've got valid input
+			Boolean valid = false;
+			while (!valid)
 			{
-				break;
-			}
+				System.out.println("Which word is showing on the display?");
+				System.out.println("(If there is no word on the display, just hit ENTER.)");
+				System.out.print("-- Word: ");
+				display = userInput.nextLine().toLowerCase();
 
-			switch(display)
-			{
-				case "ur":
-					System.out.println("Enter the word on the UPPER LEFT button.");
+				if (display.equals("quit"))
+				{
 					break;
-				case "first":
-				case "okay":
-				case "c":
-					System.out.println("Enter the word on the UPPER RIGHT button.");
-					break;
-				case "yes":
-				case "nothing":
-				case "led":
-				case "they are":
-					System.out.println("Enter the word on the MIDDLE LEFT button.");
-					break;
-				case "blank":
-				case "read":
-				case "red":
-				case "you":
-				case "your":
-				case "you're":
-				case "their":
-					System.out.println("Enter the word on the MIDDLE RIGHT button.");
-					break;
-				case "":
-				case "reed":
-				case "leed":
-				case "they're":
-					System.out.println("Enter the word on the BOTTOM LEFT button.");
-					break;
-				case "display":
-				case "says":
-				case "no":
-				case "lead":
-				case "hold on":
-				case "you are":
-				case "there":
-				case "see":
-				case "cee":
-					System.out.println("Enter the word on the BOTTOM RIGHT button.");
-					break;
+				}
 
+				switch(display)
+				{
+					case "ur":
+						System.out.println("Enter the word on the UPPER LEFT button.");
+						valid = true;
+						break;
+					case "first":
+					case "okay":
+					case "c":
+						System.out.println("Enter the word on the UPPER RIGHT button.");
+						valid = true;
+						break;
+					case "yes":
+					case "nothing":
+					case "led":
+					case "they are":
+						System.out.println("Enter the word on the MIDDLE LEFT button.");
+						valid = true;
+						break;
+					case "blank":
+					case "read":
+					case "red":
+					case "you":
+					case "your":
+					case "you're":
+					case "their":
+						System.out.println("Enter the word on the MIDDLE RIGHT button.");
+						valid = true;
+						break;
+					case "":
+					case "reed":
+					case "leed":
+					case "they're":
+						System.out.println("Enter the word on the BOTTOM LEFT button.");
+						valid = true;
+						break;
+					case "display":
+					case "says":
+					case "no":
+					case "lead":
+					case "hold on":
+					case "you are":
+					case "there":
+					case "see":
+					case "cee":
+						System.out.println("Enter the word on the BOTTOM RIGHT button.");
+						valid = true;
+						break;
+					default:
+						System.out.println("-----------------------");
+						System.out.println("BAD INPUT. Looping...");
+						System.out.println("-----------------------");
+						break;
+
+				}
 			}
+			
 
 
 			System.out.print("-- Word: ");
-			buttonLabel = userInput.next().toLowerCase();
+			buttonLabel = userInput.nextLine().toLowerCase();
 
 			System.out.print("You entered ");
 			System.out.println(buttonLabel);
@@ -194,7 +212,29 @@ public class WhosOnFirst {
 				break;
 			}
 
-			
+			System.out.println("-----------------------");
+			System.out.println("Words will be listed below. Press ENTER to advance,");
+			System.out.println("press ! when one of the words appears on one of the buttons on the panel.");
+			System.out.println("-----------------------");
+
+			int i = 0;
+
+			String inputString = "";
+
+			while ((inputString != "!\n") && (i < wordArray.length))
+			{
+				System.out.println(wordArray[i++]);
+				inputString = userInput.nextLine();
+
+			}
+
+			if (i == wordArray.length)
+			{
+				System.out.println("Did it seriously wait until the last one? That's evil. Or you fucked up.");
+				System.out.println("Advancing anyway...");
+			}
+
+			stage++;
 
 
 		}
